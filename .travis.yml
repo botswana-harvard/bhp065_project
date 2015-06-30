@@ -15,9 +15,9 @@ install:
   - pip install -q -r requirements.txt --use-mirrors
 
 before_script:
-  - flake8 bhp065_project
+  - flake8 bhp065
 script: 
-  - coverage run --source=bhp065_project manage.py test
+  - coverage run --source=bhp065 manage.py test
 
 after_success:
   - coveralls
