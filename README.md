@@ -3,3 +3,5 @@
 [![Code Health](https://landscape.io/github/botswana-harvard/bhp065_project/develop/landscape.svg?style=flat)](https://landscape.io/github/botswana-harvard/bhp065_project/develop)
 
 bhp065
+
+---
