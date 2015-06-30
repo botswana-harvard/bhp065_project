@@ -1,13 +1,12 @@
 language: python
 python:
-#  - "2.7"
+  - "2.7"
 #  - "3.2"
 #  - "3.3"
-  - "3.4"
+#  - "3.4"
 #  - "nightly"
 env:
-  - DJANGO_VERSION=1.7
-  - DJANGO_VERSION=1.8
+  - DJANGO_VERSION=1.6
 
 install:
   - pip install -q Django==$DJANGO_VERSION --use-mirrors
@@ -16,19 +15,9 @@ install:
   - pip install -q -r requirements.txt --use-mirrors
 
 before_script:
-  - flake8 getresults_dst
-  # Allow us to SSH passwordless to localhost
-  - ssh-keygen -f ~/.ssh/id_rsa -N ""
-  - cp ~/.ssh/{id_rsa.pub,authorized_keys}
-  # Creation of an SSH agent for testing forwarding
-  - eval $(ssh-agent)
-  - ssh-add
+  - flake8 bhp065_project
 script: 
-  - mkdir -p /home/travis/build/botswana-harvard/getresults-distribute/getresults_dst/testdata/inbox/
-  - mkdir -p /home/travis/build/botswana-harvard/getresults-distribute/getresults_dst/testdata/inbox/archive/
-  - mkdir -p /home/travis/build/botswana-harvard/getresults-distribute/getresults_dst/testdata/archive/
-  - mkdir -p /home/travis/build/botswana-harvard/getresults-distribute/getresults_dst/testdata/outbox
-  - coverage run --source=getresults_dst manage.py test
+  - coverage run --source=bhp065_project manage.py test
 
 after_success:
   - coveralls
