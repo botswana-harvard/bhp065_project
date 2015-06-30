@@ -5,5 +5,12 @@ django-dajax==0.9.2
 django-dajaxice==0.7
 django-databrowse==2014.9.26
 django-extensions==1.5.2
+django-tastypie
+django-storages
+M2Crypto
+gitdb
+GitPython
+pycups
+pyodbc
 -e git+https://github.com/botswana-harvard/edc@develop#egg=edc
 -e git+https://github.com/botswana-harvard/lis@develop#egg=lis

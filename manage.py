@@ -8,7 +8,7 @@ EDC_DIR = SOURCE_ROOT.child('edc_project')
 LIS_DIR = SOURCE_ROOT.child('lis_project')
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bhp065.config.settings")
     sys.path.insert(1, EDC_DIR)
     sys.path.insert(1, LIS_DIR)
     from django.core.management import execute_from_command_line
