@@ -12,8 +12,8 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='bhp065_project',
     version='0.1.0dev0',
-    author=u'lisakew',
-    author_email='ew2789@gmail.com',
+    author=u'mrbkew',
+    author_email='mrbkew@gmail.com',
     packages=find_packages(),
     include_package_data=True,
     url='http://github/botswana-harvard/bhp065_project',
