@@ -78,7 +78,7 @@ class HnsccAppConfiguration(BaseAppConfiguration):
         'panel': [PanelTuple('HPV Testing', 'TEST', 'WB')],
         'aliquot_type': [AliquotTypeTuple('Whole Blood', 'WB', '02')]}
 
-    lab_setup = {'anonymous': {
+    lab_setup = {'hnscc': {
                     'panel': [PanelTuple('HPV Testing', 'TEST', 'WB')],
                     'aliquot_type': [AliquotTypeTuple('Whole Blood', 'WB', '02'),
                                      AliquotTypeTuple('HPV Testing', 'HPV', '803')],
