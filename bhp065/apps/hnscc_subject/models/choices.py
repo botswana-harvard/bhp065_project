@@ -14,3 +14,14 @@ VISIT_REASON = (
 OFF_STUDY_REASON = (
     ('Completion of protocol', 'Completion of protocol'),
     ('Other, specify: ', 'Other, specify: '), )
+
+HOSPITAL = (
+    ('PMH', 'Princess Marina Hospital'),
+    ('BLH', 'BAMALETE'),
+    ('MAHALAPYE', 'Mahalapye'),
+    ('RAMOTSWA', 'Ramotswa'),
+    ('DENTAL', 'DENTAL'),
+    ('OPD', 'OPD'),
+    ('JWANENG', 'Jwaneng'),
+    ('ENT', 'ENT'),
+    ('KANYE', 'Kanye'), )
