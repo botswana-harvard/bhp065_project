@@ -7,23 +7,22 @@ from unipath import Path
 from bhp065.config.installed_apps import DJANGO_APPS, THIRD_PARTY_APPS, EDC_APPS, LIS_APPS, LOCAL_APPS
 from bhp065.config.databases import TESTING_SQLITE
 
-DEBUG = True  # Note: should be False for collectstatic
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-# ADMINS = ('',)
 
 APP_NAME = 'hnscc'
 
 # PATHS
-DIRNAME = os.path.dirname(os.path.abspath(__file__))  # needed??
-SOURCE_ROOT = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(3)  # e.g. /home/django/source
-EDC_DIR = SOURCE_ROOT.child('edc_project').child('edc')  # e.g. /home/django/source/edc_project/edc
+DIRNAME = os.path.dirname(os.path.abspath(__file__))
+SOURCE_ROOT = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(2)
+EDC_DIR = SOURCE_ROOT.child('edc_project').child('edc')
 TEMPLATE_DIRS = (
     EDC_DIR.child('templates'),
 )
-PROJECT_ROOT = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(2)  # e.g. /home/django/source/bhp066_project
-PROJECT_DIR = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(1)  # e.g. /home/django/source/bhp066_project/bhp066
-APP_DIR = PROJECT_DIR.child('apps').child(APP_NAME)  # e.g. /home/django/source/bhp066_project/bhp066/apps/bcpp
-ETC_DIR = PROJECT_DIR.child('config').child('etc')  # for production this should be /etc/edc
+PROJECT_ROOT = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(1)
+PROJECT_DIR = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(0)
+APP_DIR = PROJECT_DIR.child('apps').child(APP_NAME)
+ETC_DIR = PROJECT_DIR.child('config').child('etc')
 MEDIA_ROOT = PROJECT_DIR.child('media')
 STATIC_ROOT = PROJECT_DIR.child('static')
 FIXTURE_DIRS = (
@@ -41,44 +40,24 @@ DATABASES = TESTING_SQLITE
 CONN_MAX_AGE = 15
 testing_db_name = 'sqlite'
 
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
+
 ALLOWED_HOSTS = ['localhost', 'bhpserver']
 
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# On Unix systems, a value of None will cause Django to use the same
-# timezone as the operating system.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
 TIME_ZONE = 'Africa/Gaborone'
 
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-# langauage setting
-
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
 USE_I18N = True
 
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale
 USE_L10N = True
 
 LANGUAGE_CODE = 'en'
 
 SITE_ID = 1
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
 
-# URL that handles the static files served from STATIC_ROOT.
+
 STATIC_URL = '/static/'
 
-# A list of locations of additional static files
 STATICFILES_DIRS = ()
 
 # List of finder classes that know how to find static files in
@@ -147,6 +126,7 @@ SOUTH_LOGGING_ON = True
 # dajax
 DAJAXICE_MEDIA_PREFIX = "dajaxice"
 
+DEVICE_ID = '95'
 SERVER_DEVICE_ID_LIST = []
 MIDDLEMAN_DEVICE_ID_LIST = []
 FIELD_MAX_LENGTH = 'migration'
