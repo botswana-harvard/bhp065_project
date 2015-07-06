@@ -1,12 +1,12 @@
 from django.contrib import admin
 
-from edc.subject.consent.admin import BaseConsentModelAdmin
+from edc.base.modeladmin.admin import BaseModelAdmin
 
 from ..forms import EnrollmentForm
 from ..models import Enrollment
 
 
-class EnrollmentAdmin(BaseConsentModelAdmin):
+class EnrollmentAdmin(BaseModelAdmin):
 
     dashboard_type = 'subject'
     form = EnrollmentForm
@@ -20,8 +20,7 @@ class EnrollmentAdmin(BaseConsentModelAdmin):
             'gender',
             'age',
             'hiv_status',
-            'smoking_status']
-        self.radio_fields({'hiv_status': admin.VERTICAL,
-                           'smoking_status': admin.VERTICAL,
-                           })
+            'smoking_status', ]
+        self.radio_fields = {'hiv_status': admin.VERTICAL,
+                             'smoking_status': admin.VERTICAL, }
 admin.site.register(Enrollment, EnrollmentAdmin)

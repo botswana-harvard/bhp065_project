@@ -3,7 +3,7 @@ from django.contrib import admin
 from edc.subject.appointment.admin import BaseAppointmentModelAdmin
 
 from ..models import HnsccVisit, HnsccOffStudy
-from ..forms.main import HnsccVisitForm, HnsccOffStudyForm
+from ..forms import HnsccVisitForm, HnsccOffStudyForm
 from .hnscc_off_study_model_admin import HnsccOffStudyModelAdmin
 
 

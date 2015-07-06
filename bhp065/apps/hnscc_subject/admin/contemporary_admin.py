@@ -14,8 +14,6 @@ class ContemporaryAdmin(HnsccVisitModelAdmin):
         "specimen_collecton",
         "specimen_size",
         "nature_of_specimen",
-        "specimen_size",
-        "nature_of_specimen",
         "tissues",
         "topography_code",
         "morphology_code",
