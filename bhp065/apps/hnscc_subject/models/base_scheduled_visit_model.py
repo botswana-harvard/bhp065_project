@@ -6,7 +6,6 @@ from edc.entry_meta_data.managers import EntryMetaDataManager
 
 from ..models.hnscc_visit import HnsccVisit
 from .hnscc_base_uuid_model import HnsccBaseUuidModel
-from ..managers import ScheduledModelManager
 
 
 class BaseScheduledVisitModel(HnsccBaseUuidModel):
@@ -24,8 +23,6 @@ class BaseScheduledVisitModel(HnsccBaseUuidModel):
             datetime_not_future, ],
         default=datetime.today(), )
 
-    objects = ScheduledModelManager()
-
     def __unicode__(self):
         return unicode(self.hnscc_visit)
 
@@ -37,9 +34,6 @@ class BaseScheduledVisitModel(HnsccBaseUuidModel):
 
     def get_visit(self):
         return self.hnscc_visit
-
-    def natural_key(self):
-        return self.hnscc_visit.natural_key()
 
     class Meta:
         abstract = True
