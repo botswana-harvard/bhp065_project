@@ -1,0 +1,15 @@
+{% extends "base_registered_subject_dashboard.html"%}
+{% load common_tags %}
+{% load crypto_tags %}
+
+{% block clinic_dashboard_marquee %}
+<table>
+<tr style="background:lightyellow;">
+    <td nowrap><B>Identifier:</B> {% if enrollment.subject_identifier %}{{enrollment.subject_identifier }}{%else%}{{registered_subject.subject_identifier }}{% endif %}</td>
+    <td nowrap><B>Registration Time:</B> {{enrollment.report_datetime|date:"Y-m-d H:i" }}</td>
+    <td nowrap><B>Gender:</B> <i>{% if enrollment.gender %}{{enrollment.gender}}{% else %}{{registered_subject.gender|gender }} {% endif %}</i></td> 
+    <td colspan=1><B>HIV status:</B>{%if hiv_status%}{{hiv_status}} {%else%}<i>UNKNOWN</i> {%endif%} </td>
+    <td colspan=1><B>SMOKING status:</B>{%if smoking_status%}{{smoking_status}} {%else%}<i>UNKNOWN</i> {%endif%} </td>
+
+</table>
+{% endblock %}
