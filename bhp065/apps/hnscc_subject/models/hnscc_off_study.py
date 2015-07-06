@@ -7,6 +7,7 @@ from edc.subject.appointment_helper.models import BaseAppointmentMixin
 from edc.subject.registration.models import RegisteredSubject
 from edc.entry_meta_data.managers import EntryMetaDataManager
 
+from .choices import OFF_STUDY_REASON
 from .hnscc_visit import HnsccVisit
 
 
@@ -20,7 +21,8 @@ class HnsccOffStudy(BaseSyncUuidModel, BaseAppointmentMixin):
 
     reason = models.CharField(
         verbose_name="Please code the primary reason participant taken off-study",
-        max_length=115)
+        choices=OFF_STUDY_REASON,
+        max_length=45)
 
     history = AuditTrail()
 
