@@ -53,6 +53,7 @@ class Historical (BaseScheduledVisitModel):
         help_text="", )
     topography_code = models.CharField(
         verbose_name="Cancer Site",
+        max_length=15,
         validators=[RegexValidator(
             regex=r'^([C](\d{2})|[C](\d{2}\.\d{1}))$',
             message=('A site code always starts with a C, followed by numbers: integer or '
@@ -60,6 +61,7 @@ class Historical (BaseScheduledVisitModel):
         help_text="record ICD topography code", )
     morphology_code = models.CharField(
         verbose_name="Clinical and/or Pathologic Diagnosis",
+        max_length=15,
         validators=[RegexValidator(
             regex=r'^[M]{1}[0-9]{4}[/][3]{1}$',
             message='A site code always starts with a M, followed by four numbers and a /3'), ],

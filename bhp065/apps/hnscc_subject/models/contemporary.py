@@ -33,6 +33,7 @@ class Contemporary (BaseScheduledVisitModel):
         max_length=45,
         help_text="", )
     topography_code = models.CharField(
+        max_length=15,
         verbose_name="Cancer Site",
         validators=[RegexValidator(
             regex=r'^([C](\d{2})|[C](\d{2}\.\d{1}))$',
@@ -40,6 +41,7 @@ class Contemporary (BaseScheduledVisitModel):
                      'decimal.FORMAT is CXX or CXX.X')), ],
         help_text="record ICD topography code", )
     morphology_code = models.CharField(
+        max_length=15,
         verbose_name="Clinical and/or Pathologic Diagnosis",
         validators=[RegexValidator(
             regex=r'^[M]{1}[0-9]{4}[/][3]{1}$',
