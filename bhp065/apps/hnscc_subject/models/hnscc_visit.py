@@ -22,6 +22,12 @@ class HnsccVisit(HnsccOffStudyMixin, BaseSyncUuidModel):
             datetime_not_future, ],
         help_text='Date and time of this report')
 
+    reason = models.CharField(
+        verbose_name="Reason for this visit?",
+        max_length=25,
+        choices=VISIT_REASON,
+        help_text="", )
+
     history = AuditTrail()
 
     @property
@@ -33,9 +39,6 @@ class HnsccVisit(HnsccOffStudyMixin, BaseSyncUuidModel):
 
     def get_absolute_url(self):
         return reverse('admin:hnscc_subject_hnsccvisit_change', args=(self.id,))
-
-    def get_visit_reason_choices(self):
-        return VISIT_REASON
 
     def save(self, *args, **kwargs):
         super(HnsccVisit, self).save(*args, **kwargs)
