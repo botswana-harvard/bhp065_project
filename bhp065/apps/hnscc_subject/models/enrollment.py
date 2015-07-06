@@ -1,16 +1,17 @@
-from django.conf import settings
 from django.db import models
 
 from edc.audit.audit_trail import AuditTrail
 from edc.base.model.validators import (datetime_not_before_study_start, datetime_not_future)
 from edc.choices.common import GENDER
 from edc.device.sync.models import BaseSyncUuidModel
+from edc.subject.appointment_helper.models import BaseAppointmentMixin
 from edc.subject.registration.models import RegisteredSubject
 
+from .hnscc_off_study_mixin import HnsccOffStudyMixin
 from .choices import HIV_STATUS, SMOKING_STATUS
 
 
-class Enrollment (BaseSyncUuidModel):
+class Enrollment (HnsccOffStudyMixin, BaseAppointmentMixin, BaseSyncUuidModel):
 
     """This is the subject enrollment form"""
 
