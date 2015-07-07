@@ -4,7 +4,7 @@
         <thead>
             <tr>
         <th>Dashboard</th>
-        <th>Identifier</th>
+        <th>Enrolled Subject</th>
         <th>Registration</th>
         <th>Gender</th>                        
         <th>Age</th>
@@ -17,10 +17,10 @@
         
         <tbody>
         {% for enrollment in search_result.object_list %}
-            {% if enrollment.subject_identifier %}
+            {% if enrollment.registered_subject %}
                 <tr class="{% cycle 'row1' 'row2' %}">
                 <td><A href="{% url 'hnscc_dashboard_url' dashboard_type='subject' dashboard_model='enrollment' dashboard_id=enrollment.pk show='appointments' %}">{{enrollment.subject_identifier}}</A></td>
-                <td>{{ enrollment.subject_identifier}}</td>
+                <td>{{ enrollment.registered_subject}}</td>
                 <td>{{ enrollment.report_datetime|date:'Y-m-d H:i' }}</td> 
                 <td>{{ enrollment.gender }}</td> 
                 <td>{{ enrollment.age }}</td>
