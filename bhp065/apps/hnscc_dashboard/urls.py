@@ -1,4 +1,4 @@
-from .classes import HnsccDashboard
+from apps.hnscc_dashboard.classes import HnsccDashboard
 
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
