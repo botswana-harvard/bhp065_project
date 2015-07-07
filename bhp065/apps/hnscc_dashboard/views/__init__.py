@@ -1,1 +1,1 @@
-from .dashboard import *
+from .hnscc_dashboard import *

@@ -6,7 +6,7 @@ from ..classes import HnsccDashboard
 
 
 @login_required
-def dashboard(request, **kwargs):
+def hnscc_dashboard(request, **kwargs):
     dashboard = HnsccDashboard(
         dashboard_type=kwargs.get('dashboard_type'),
         dashboard_id=kwargs.get('dashboard_id'),
