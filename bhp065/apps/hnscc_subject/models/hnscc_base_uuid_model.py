@@ -1,8 +1,8 @@
-from edc.device.sync.models import BaseSyncUuidModel
+from edc.base.model.models import BaseUuidModel
 from .hnscc_off_study_mixin import HnsccOffStudyMixin
 
 
-class HnsccBaseUuidModel(HnsccOffStudyMixin, BaseSyncUuidModel):
+class HnsccBaseUuidModel(HnsccOffStudyMixin, BaseUuidModel):
 
     """ Base model for all hnscc subject models """
 

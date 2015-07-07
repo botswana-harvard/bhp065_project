@@ -3,14 +3,14 @@ from django.core.urlresolvers import reverse
 
 from edc.audit.audit_trail import AuditTrail
 from edc.base.model.validators import datetime_not_before_study_start, datetime_not_future, datetime_is_after_consent
-from edc.device.sync.models import BaseSyncUuidModel
+from edc.base.model.models import BaseUuidModel
 from edc.subject.appointment.models import Appointment
 
 from .choices import VISIT_REASON
 from .hnscc_off_study_mixin import HnsccOffStudyMixin
 
 
-class HnsccVisit(HnsccOffStudyMixin, BaseSyncUuidModel):
+class HnsccVisit(HnsccOffStudyMixin, BaseUuidModel):
 
     appointment = models.OneToOneField(Appointment,)
 

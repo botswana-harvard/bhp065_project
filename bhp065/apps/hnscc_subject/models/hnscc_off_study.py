@@ -2,7 +2,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 
 from edc.audit.audit_trail import AuditTrail
-from edc.device.sync.models import BaseSyncUuidModel
+from edc.base.model.models import BaseUuidModel
 from edc.subject.appointment_helper.models import BaseAppointmentMixin
 from edc.subject.registration.models import RegisteredSubject
 from edc.entry_meta_data.managers import EntryMetaDataManager
@@ -11,7 +11,7 @@ from .choices import OFF_STUDY_REASON
 from .hnscc_visit import HnsccVisit
 
 
-class HnsccOffStudy(BaseSyncUuidModel, BaseAppointmentMixin):
+class HnsccOffStudy(BaseUuidModel, BaseAppointmentMixin):
 
     registered_subject = models.OneToOneField(RegisteredSubject)
 
