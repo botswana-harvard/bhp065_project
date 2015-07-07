@@ -37,6 +37,7 @@ class HnsccDashboard(RegisteredSubjectDashboard):
             title='Hnscc Dashboard',
             hiv_status=self.hnscc_hiv_status(),
             smoking_status=self.hnscc_smoking_status(),
+            enrollment=self.enrollment(),
             )
         return self.context
 
@@ -48,6 +49,14 @@ class HnsccDashboard(RegisteredSubjectDashboard):
 
     def get_visit_model(self):
         return HnsccVisit
+
+    @property
+    def enrollment(self):
+        try:
+            enrollment = Enrollment.objects.get(registered_subject=self.registered_subject)
+        except Enrollment.DoesNotExist:
+            enrollment = None
+        return enrollment
 
     def hnscc_hiv_status(self):
         st = Enrollment.objects.filter(registered_subject=self.registered_subject)
