@@ -11,16 +11,19 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 APP_NAME = 'hnscc'
+PROJECT_NUMBER = 'BHP065'
 
 # PATHS
 DIRNAME = os.path.dirname(os.path.abspath(__file__))
-SOURCE_ROOT = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(2)
+SOURCE_ROOT = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(3)
 EDC_DIR = SOURCE_ROOT.child('edc_project').child('edc')
 TEMPLATE_DIRS = (
     EDC_DIR.child('templates'),
 )
-PROJECT_ROOT = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(1)
-PROJECT_DIR = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(0)
+PROJECT_ROOT = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(2)
+#print PROJECT_ROOT
+PROJECT_DIR = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(1)
+#print PROJECT_DIR
 APP_DIR = PROJECT_DIR.child('apps').child(APP_NAME)
 ETC_DIR = PROJECT_DIR.child('config').child('etc')
 MEDIA_ROOT = PROJECT_DIR.child('media')
@@ -132,3 +135,7 @@ MIDDLEMAN_DEVICE_ID_LIST = []
 FIELD_MAX_LENGTH = 'migration'
 IS_SECURE_DEVICE = True
 MAX_SUBJECTS = 3000
+
+PROJECT_TITLE = 'TEST: Head & Neck Squamous Cell Carcinoma'
+INSTITUTION = 'Botswana-Harvard AIDS Institute Partnership'
+PROTOCOL_REVISION = 'VX.X XX May 20XX'
