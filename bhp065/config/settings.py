@@ -12,6 +12,7 @@ TEMPLATE_DEBUG = DEBUG
 
 APP_NAME = 'hnscc'
 PROJECT_NUMBER = 'BHP065'
+PROJECT_IDENTIFIER_PREFIX = '000'
 
 # PATHS
 DIRNAME = os.path.dirname(os.path.abspath(__file__))
@@ -23,7 +24,7 @@ TEMPLATE_DIRS = (
 PROJECT_ROOT = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(2)
 #print PROJECT_ROOT
 PROJECT_DIR = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(1)
-#print PROJECT_DIR
+print PROJECT_DIR
 APP_DIR = PROJECT_DIR.child('apps').child(APP_NAME)
 ETC_DIR = PROJECT_DIR.child('config').child('etc')
 MEDIA_ROOT = PROJECT_DIR.child('media')
@@ -35,8 +36,13 @@ STATICFILES_DIRS = ()
 CONFIG_DIR = PROJECT_DIR.child('config')
 MAP_DIR = STATIC_ROOT.child('img')
 
-# edc.crytpo_fields encryption keys
-KEY_PATH = PROJECT_DIR.child('keys')
+if socket.gethostname() == 'mac.local':
+    KEY_PATH = '/Volumes/bhp065_project/bhp065/keys'
+elif socket.gethostname() == 'silverapple':
+    KEY_PATH = '/Users/melissa/Documents/git/source//bhp065_project/bhp065/keys'
+else:
+    KEY_PATH = '/Volumes/keys'
+
 
 # DATABASES
 DATABASES = TESTING_SQLITE
@@ -55,6 +61,7 @@ USE_L10N = True
 LANGUAGE_CODE = 'en'
 
 SITE_ID = 1
+SITE_CODE = '040'
 
 MEDIA_URL = '/media/'
 
@@ -129,13 +136,18 @@ SOUTH_LOGGING_ON = True
 # dajax
 DAJAXICE_MEDIA_PREFIX = "dajaxice"
 
+ALLOW_MODEL_SERIALIZATION = False
+
 DEVICE_ID = '95'
 SERVER_DEVICE_ID_LIST = []
 MIDDLEMAN_DEVICE_ID_LIST = []
 FIELD_MAX_LENGTH = 'migration'
 IS_SECURE_DEVICE = True
-MAX_SUBJECTS = 3000
+
+SUBJECT_TYPES = ['subject', ]
+MAX_SUBJECTS = {'subject': 300, }
+SUBJECT_APP_LIST = ['hnscc_subject', ]
 
 PROJECT_TITLE = 'TEST: Head & Neck Squamous Cell Carcinoma'
 INSTITUTION = 'Botswana-Harvard AIDS Institute Partnership'
-PROTOCOL_REVISION = 'VX.X XX May 20XX'
+PROTOCOL_REVISION = 'VX.XX XX May 20XX'
