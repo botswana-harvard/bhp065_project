@@ -1,0 +1,38 @@
+  {% load common_tags %}{% load crypto_tags %}
+  <div class="results">
+      <table  cellspacing="0" id="result_list" border=1>
+        <thead>
+            <tr>
+        <th>Dashboard</th>
+        <th>Identifier</th>
+        <th>Registration</th>
+        <th>Gender</th>                        
+        <th>Age</th>
+        <th>HIV status</th>
+        <th>SMOKING status</th>
+        <th>User Created</th>
+        <th>Date Modified</th>
+        <th>Host</host>             
+        </thead>
+        
+        <tbody>
+        {% for enrollment in search_result.object_list %}
+            {% if enrollment.subject_identifier %}
+                <tr class="{% cycle 'row1' 'row2' %}">
+                <td><A href="{% url 'hnscc_dashboard_url' dashboard_type='subject' dashboard_model='enrollment' dashboard_id=enrollment.pk show='appointments' %}">{{enrollment.subject_identifier}}</A></td>
+                <td>{{ enrollment.subject_identifier}}</td>
+                <td>{{ enrollment.report_datetime|date:'Y-m-d H:i' }}</td> 
+                <td>{{ enrollment.gender }}</td> 
+                <td>{{ enrollment.age }}</td>
+                <td>{{ enrollment.hiv_status }}</td>    
+                <td>{{ enrollment.smoking_status }}</td>                             
+                <td>{{ enrollment.user_created }}</td>
+                <td>{{ enrollment.modified|date:"Y-m-d" }}</td>
+                <td>{{ enrollment.hostname_created }}</td>            
+                </tr>
+           {% endif %}
+        {% endfor %}
+        <tr><td colspan="9">{{ search_result.object_list.count }} Enrollment{{ search_result.object_list|pluralize }} found.</td></tr>                  
+      </tbody>
+    </table>    
+    </div>
