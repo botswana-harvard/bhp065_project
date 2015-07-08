@@ -2,7 +2,7 @@ from collections import OrderedDict
 
 from edc.subject.visit_schedule.classes import (VisitScheduleConfiguration, site_visit_schedules,
                                                 EntryTuple, MembershipFormTuple,
-                                                ScheduleGroupTuple)
+                                                ScheduleGroupTuple, RequisitionPanelTuple)
 from edc.constants import REQUIRED, NOT_ADDITIONAL, NOT_REQUIRED, ADDITIONAL
 
 from ..models import Enrollment, HnsccVisit
@@ -32,7 +32,9 @@ class HnsccVisitSchedule(VisitScheduleConfiguration):
         'visit_tracking_model': HnsccVisit,
         'schedule_group': 'Subject Enrollment',
         'instructions': None,
-        'requisitions': (),
+        'requisitions': (
+            RequisitionPanelTuple(10L, u'hnscc_lab', u'hnsccrequisition', 'HPV Testing',
+                                  'TEST', 'WB', NOT_REQUIRED, NOT_ADDITIONAL), ),
         'entries': (
             EntryTuple(10L, u'hnscc_subject', u'contemporary', REQUIRED, NOT_ADDITIONAL),
             EntryTuple(20L, u'hnscc_subject', u'historical', REQUIRED, NOT_ADDITIONAL),
