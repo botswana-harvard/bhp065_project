@@ -1,6 +1,7 @@
 from edc.dashboard.subject.classes import RegisteredSubjectDashboard
 
 from apps.hnscc_subject.models import Enrollment, HnsccVisit
+from apps.hnscc_lab.models import HnsccRequisition
 
 
 class HnsccDashboard(RegisteredSubjectDashboard):
@@ -25,8 +26,10 @@ class HnsccDashboard(RegisteredSubjectDashboard):
         self.subject_dashboard_url = 'hnscc_dashboard_url'
         self.membership_form_category = ['subject_enrollment']
         self.dashboard_type_list = ['subject']
+        self.requisition_model = HnsccRequisition
         self.dashboard_models['enrollment'] = Enrollment
         self.dashboard_models['visit'] = self._visit_model
+        self._locator_model = None
 
     def get_context_data(self, **kwargs):
         super(HnsccDashboard, self).get_context_data(**kwargs)
@@ -37,8 +40,7 @@ class HnsccDashboard(RegisteredSubjectDashboard):
             title='Hnscc Dashboard',
             hiv_status=self.hnscc_hiv_status(),
             smoking_status=self.hnscc_smoking_status(),
-            enrollment=self.enrollment(),
-            )
+            enrollment=self.enrollment(), )
         return self.context
 
     def set_dashboard_type_list(self):
@@ -50,7 +52,6 @@ class HnsccDashboard(RegisteredSubjectDashboard):
     def get_visit_model(self):
         return HnsccVisit
 
-    @property
     def enrollment(self):
         try:
             enrollment = Enrollment.objects.get(registered_subject=self.registered_subject)
