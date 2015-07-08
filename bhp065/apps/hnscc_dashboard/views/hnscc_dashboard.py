@@ -14,8 +14,7 @@ def hnscc_dashboard(request, **kwargs):
         dashboard_category=kwargs.get('dashboard_category'),
         registered_subject=kwargs.get('registered_subject'),
         show=kwargs.get('show'),
-        dashboard_type_list=['subject'],
-        )
+        dashboard_type_list=['subject'], )
     dashboard.set_context()
     return render_to_response(
         'hnscc_dashboard.html',
