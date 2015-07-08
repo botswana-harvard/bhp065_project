@@ -8,5 +8,4 @@ for pattern in HnsccDashboard.get_urlpatterns():
     urlpatterns.append(
         url(pattern,
             login_required(HnsccDashboard.as_view()),
-            name=HnsccDashboard.dashboard_url_name)
-        )
+            name=HnsccDashboard.dashboard_url_name))
