@@ -13,8 +13,7 @@ class SectionAdministrationView(BaseSectionView):
 
     def contribute_to_context(self, context, request, *args, **kwargs):
         context.update({
-            'enrollment_meta': ModelMeta('hnscc_subject', 'enrollment'),
-            })
+            'enrollment_meta': ModelMeta('hnscc_subject', 'enrollment'), })
         return context
 
 site_sections.register(SectionAdministrationView, replaces='administration')
