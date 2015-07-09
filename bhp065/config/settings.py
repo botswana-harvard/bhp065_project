@@ -11,7 +11,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 APP_NAME = 'hnscc'
-PROJECT_NUMBER = 'BHP065'
+PROJECT_NUMBER = 'BHP000'
 PROJECT_IDENTIFIER_PREFIX = '000'
 
 # PATHS
@@ -36,12 +36,7 @@ STATICFILES_DIRS = ()
 CONFIG_DIR = PROJECT_DIR.child('config')
 MAP_DIR = STATIC_ROOT.child('img')
 
-if socket.gethostname() == 'mac.local':
-    KEY_PATH = '/Volumes/bhp065_project/bhp065/keys'
-elif socket.gethostname() == 'silverapple':
-    KEY_PATH = '/Users/melissa/Documents/git/source//bhp065_project/bhp065/keys'
-else:
-    KEY_PATH = '/Volumes/keys'
+KEY_PATH = '/Volumes/keys'
 
 
 # DATABASES
@@ -50,7 +45,7 @@ CONN_MAX_AGE = 15
 testing_db_name = 'sqlite'
 
 
-ALLOWED_HOSTS = ['localhost', 'bhpserver']
+ALLOWED_HOSTS = ['localhost']
 
 TIME_ZONE = 'Africa/Gaborone'
 
@@ -61,7 +56,7 @@ USE_L10N = True
 LANGUAGE_CODE = 'en'
 
 SITE_ID = 1
-SITE_CODE = '040'
+SITE_CODE = '001'
 
 MEDIA_URL = '/media/'
 
