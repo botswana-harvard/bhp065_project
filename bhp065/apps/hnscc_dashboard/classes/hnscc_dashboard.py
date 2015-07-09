@@ -1,4 +1,5 @@
 from edc.dashboard.subject.classes import RegisteredSubjectDashboard
+from edc.subject.registration.models import RegisteredSubject
 
 from apps.hnscc_subject.models import Enrollment, HnsccVisit
 from apps.hnscc_lab.models import HnsccRequisition
@@ -12,8 +13,8 @@ class HnsccDashboard(RegisteredSubjectDashboard):
     urlpattern_view = 'apps.hnscc_dashboard.views'
     template_name = 'hnscc_dashboard.html'
     urlpatterns = [
-        RegisteredSubjectDashboard.urlpatterns[0][:-1] + '(?P<appointment_code>{appointment_code})/$'
-        ] + RegisteredSubjectDashboard.urlpatterns
+        RegisteredSubjectDashboard.urlpatterns[0][:-1] +
+        '(?P<appointment_code>{appointment_code})/$'] + RegisteredSubjectDashboard.urlpatterns
     urlpattern_options = dict(
         RegisteredSubjectDashboard.urlpattern_options,
         dashboard_model=RegisteredSubjectDashboard.urlpattern_options['dashboard_model'] + '|enrollment',
@@ -80,3 +81,22 @@ class HnsccDashboard(RegisteredSubjectDashboard):
             elif not self._hnscc_smoking_status:
                 self._hnscc_smoking_status = 'UNK'
             return self._hnscc_smoking_status
+
+    def get_subject_visit(self):
+        try:
+            hnscc_visit = self.get_visit_model().objects.filter(registered_subject=self.registered_subject)
+        except self.get_visit_model().DoesNotExist:
+            hnscc_visit = None
+        return hnscc_visit
+
+    @property
+    def registered_subject(self):
+        enroll = None
+        try:
+            enroll = Enrollment.objects.get(id=self.dashboard_id)
+        except Enrollment.DoesNotExist:
+            try:
+                visit = HnsccVisit.objects.get(id=self.dashboard_id)
+            except HnsccVisit.DoesNotExist:
+                pass
+        return enroll.registered_subject if enroll else visit.appointment.registered_subject if visit else None
