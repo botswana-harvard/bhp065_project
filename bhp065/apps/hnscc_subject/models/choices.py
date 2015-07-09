@@ -25,3 +25,7 @@ HOSPITAL = (
     ('JWANENG', 'Jwaneng'),
     ('ENT', 'ENT'),
     ('KANYE', 'Kanye'), )
+
+SURVIVAL_STATUS = (
+    ('ALIVE', 'Alive'),
+    ('DEAD', 'Dead'), )
