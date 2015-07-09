@@ -91,10 +91,12 @@ class HnsccDashboard(RegisteredSubjectDashboard):
 
     @property
     def registered_subject(self):
+        print 'Dashboard id', self.dashboard_id
         enroll = None
         try:
             enroll = Enrollment.objects.get(id=self.dashboard_id)
         except Enrollment.DoesNotExist:
+            visit = None
             try:
                 visit = HnsccVisit.objects.get(id=self.dashboard_id)
             except HnsccVisit.DoesNotExist:
