@@ -9,7 +9,7 @@ from edc.subject.appointment_helper.models import BaseAppointmentMixin
 from edc.subject.registration.models import RegisteredSubject
 
 from .hnscc_off_study_mixin import HnsccOffStudyMixin
-from .choices import HIV_STATUS, SMOKING_STATUS
+from .choices import HIV_STATUS, SMOKING_STATUS, SURVIVAL_STATUS
 
 
 class Enrollment (HnsccOffStudyMixin, BaseAppointmentMixin, BaseUuidModel):
@@ -47,6 +47,11 @@ class Enrollment (HnsccOffStudyMixin, BaseAppointmentMixin, BaseUuidModel):
         max_length=15,
         choices=SMOKING_STATUS,)
 
+    survival_status = models.CharField(
+        verbose_name='Survival status',
+        max_length=5,
+        choices=SURVIVAL_STATUS,)
+
     history = AuditTrail()
 
     def __unicode__(self):
@@ -58,16 +63,26 @@ class Enrollment (HnsccOffStudyMixin, BaseAppointmentMixin, BaseUuidModel):
             subject_age.append('Under age (<18).')
         return (False if subject_age else True, subject_age)
 
-    @property
-    def enrollment_response(self):
-        age_response = []
-        if self.age < 18:
-            age_response.append('UNDER AGE.')
-        age_response.sort()
-        return '; '.join(age_response)
-
     def get_registration_datetime(self):
         return self.report_datetime
+
+    def save(self, *args, **kwargs):
+        using = kwargs.get('using')
+        self.register_enrolled_subjects(using)
+        super(Enrollment, self).save(*args, **kwargs)
+
+    def register_enrolled_subjects(self, using, **kwargs):
+        registered_subject = RegisteredSubject.objects.using(using).create(
+            created=self.created,
+            subject_identifier=SubjectIdentifier(site_code=settings.SITE_CODE).get_identifier(),
+            first_name='Anonymous',
+            gender=self.gender,
+            hiv_status=self.hiv_status,
+            subject_type='subject',
+            registration_datetime=self.created,
+            user_created=self.user_created,
+            registration_status='enrolled',)
+        self.registered_subject = registered_subject
 
     class Meta:
         app_label = "hnscc_subject"
