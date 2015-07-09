@@ -34,6 +34,9 @@ class HnsccVisit(HnsccOffStudyMixin, BaseUuidModel):
     def registered_subject(self):
         return self.get_registered_subject()
 
+    def get_appointment(self):
+        return self.appointment
+
     def __unicode__(self):
         return unicode(self.appointment)
 
