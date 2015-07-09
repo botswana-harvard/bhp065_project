@@ -45,42 +45,35 @@ urlpatterns = patterns(
     '',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/logout/$', RedirectView.as_view(url='/{app_name}/logout/'.format(app_name=APP_NAME))),
-    (r'^admin/', include(admin.site.urls)),
-    #url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
-)
-
-#this is for additional_requisitions
-urlpatterns += patterns('',
-                        url(r'^{app_name}/dashboard/visit/add_requisition/'.format(app_name=APP_NAME), additional_requisition, name="add_requisition"),
-                        )
+    (r'^admin/', include(admin.site.urls)),)
 
 urlpatterns += patterns(
     '',
-#     (r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls')),
-    url(dajaxice_config.dajaxice_url, include('dajaxice.urls'))
-)
+    url(r'^{app_name}/dashboard/visit/add_requisition/'.format(app_name=APP_NAME),
+        additional_requisition, name="add_requisition"),)
 
 urlpatterns += patterns(
     '',
-    url(r'^databrowse/(.*)', login_required(django_databrowse.site.root)),
-)
+    # (r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls')),
+    url(dajaxice_config.dajaxice_url, include('dajaxice.urls')))
 
 urlpatterns += patterns(
     '',
-    url(r'^audit_trail/', include('edc.audit.urls'), name="audit_trail_url_name"),
-)
+    url(r'^databrowse/(.*)', login_required(django_databrowse.site.root)),)
+
+urlpatterns += patterns(
+    '',
+    url(r'^audit_trail/', include('edc.audit.urls'), name="audit_trail_url_name"),)
 
 urlpatterns += patterns(
     '',
     url(r'^{app_name}/section/reports/model_data_inspector/'.format(app_name=APP_NAME),
-        include('edc.core.model_data_inspector.urls'), name="model_data_inspector_url_name"),
-)
+        include('edc.core.model_data_inspector.urls'), name="model_data_inspector_url_name"),)
 
 urlpatterns += patterns(
     '',
     url(r'^{app_name}/dashboard/'.format(app_name=APP_NAME),
-        include('apps.{app_name}_dashboard.urls'.format(app_name=APP_NAME))),
-)
+        include('apps.{app_name}_dashboard.urls'.format(app_name=APP_NAME))),)
 
 urlpatterns += patterns(
     '',
@@ -95,19 +88,16 @@ urlpatterns += patterns(
         name='password_change_url'.format(app_name=APP_NAME)),
     url(r'^{app_name}/password_change_done/'.format(app_name=APP_NAME),
         'django.contrib.auth.views.password_change_done',
-        name='password_change_done'.format(app_name=APP_NAME)),
-)
+        name='password_change_done'.format(app_name=APP_NAME)),)
 urlpatterns += patterns(
     '',
     url(r'^{app_name}/section/'.format(app_name=APP_NAME),
-        include('edc.dashboard.section.urls'), name='section'),
-)
+        include('edc.dashboard.section.urls'), name='section'),)
 
 urlpatterns += patterns(
     '',
     url(r'^{app_name}/$'.format(app_name=APP_NAME),
         RedirectView.as_view(url='/{app_name}/section/'.format(app_name=APP_NAME))),
-    url(r'', RedirectView.as_view(url='/{app_name}/section/'.format(app_name=APP_NAME))),
-)
+    url(r'', RedirectView.as_view(url='/{app_name}/section/'.format(app_name=APP_NAME))),)
 
 urlpatterns += staticfiles_urlpatterns()
