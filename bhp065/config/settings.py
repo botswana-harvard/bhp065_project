@@ -22,7 +22,7 @@ TEMPLATE_DIRS = (
     EDC_DIR.child('templates'),
 )
 PROJECT_ROOT = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(2)
-#print PROJECT_ROOT
+# print PROJECT_ROOT
 PROJECT_DIR = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(1)
 print PROJECT_DIR
 APP_DIR = PROJECT_DIR.child('apps').child(APP_NAME)
@@ -145,4 +145,4 @@ SUBJECT_APP_LIST = ['hnscc_subject', ]
 
 PROJECT_TITLE = 'TEST: Head & Neck Squamous Cell Carcinoma'
 INSTITUTION = 'Botswana-Harvard AIDS Institute Partnership'
-PROTOCOL_REVISION = 'VX.XX XX May 20XX'
+PROTOCOL_REVISION = 'VX.X XX May 20XX'
