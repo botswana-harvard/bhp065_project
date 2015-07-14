@@ -11,4 +11,4 @@ M2Crypto
 gitdb
 GitPython
 pycups
-pyodbc
+pyodbc==3.0.6
