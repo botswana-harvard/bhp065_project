@@ -16,7 +16,7 @@ class EnrolledSubjectFactory(factory.DjangoModelFactory):
     smoking_status = 'non-smoker'
     survival_status = 'ALIVE'
     registered_subject = RegisteredSubject.objects.create(
-                                                    first_name='Anonymous',
-                                                    subject_type='subject',
-                                                    subject_identifier=SubjectIdentifier(site_code='040').get_identifier(),
-                                                    registration_status='enrolled')
+        first_name='Anonymous',
+        subject_type='subject',
+        subject_identifier=SubjectIdentifier(site_code='040').get_identifier(),
+        registration_status='enrolled')
