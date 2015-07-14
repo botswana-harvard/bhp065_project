@@ -21,8 +21,9 @@ class Contemporary (BaseScheduledVisitModel):
     specimen_collecton = models.DateField(
         verbose_name="Specimen Collection",
         help_text="", )
-    specimen_size = models.DateField(
+    specimen_size = models.CharField(
         verbose_name="Specimen size",
+        max_length=25,
         help_text="", )
     nature_of_specimen = models.CharField(
         verbose_name="Nature of specimen",
@@ -56,7 +57,7 @@ class Contemporary (BaseScheduledVisitModel):
         max_length=3,
         choices=YES_NO,
         help_text="Botswana Prospective Cancer Cohort", )
-    bid_number = models.IntegerField(
+    bid_number = models.CharField(
         verbose_name="BID number",
         max_length=15,
         null=True,
