@@ -82,9 +82,9 @@ class Historical (BaseScheduledVisitModel):
         return unicode(self.hnscc_visit)
 
     def get_absolute_url(self):
-        return reverse('admin:hnscc_subject_contemporary_change', args=(self.id,))
+        return reverse('admin:hnscc_subject_historical_change', args=(self.id,))
 
     class Meta:
         app_label = "hnscc_subject"
-        verbose_name = "Contemporary"
-        verbose_name_plural = "Contemporary"
+        verbose_name = "Historical"
+        verbose_name_plural = "Historical"
