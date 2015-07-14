@@ -29,3 +29,7 @@ HOSPITAL = (
 SURVIVAL_STATUS = (
     ('ALIVE', 'Alive'),
     ('DEAD', 'Dead'), )
+
+DATA_COLLECTION_TYPE = (
+    ('contemporary', 'Contemporary'),
+    ('historical', 'Historical'), )
