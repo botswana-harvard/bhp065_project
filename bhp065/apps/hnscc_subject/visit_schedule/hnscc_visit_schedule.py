@@ -34,7 +34,7 @@ class HnsccVisitSchedule(VisitScheduleConfiguration):
         'instructions': None,
         'requisitions': (
             RequisitionPanelTuple(10L, u'hnscc_lab', u'hnsccrequisition', 'HPV Testing',
-                                  'TEST', 'WB', NOT_REQUIRED, NOT_ADDITIONAL), ),
+                                  'TEST', 'WB', REQUIRED, NOT_ADDITIONAL), ),
         'entries': (
             EntryTuple(10L, u'hnscc_subject', u'contemporary', REQUIRED, NOT_ADDITIONAL),
             EntryTuple(20L, u'hnscc_subject', u'historical', REQUIRED, NOT_ADDITIONAL),
