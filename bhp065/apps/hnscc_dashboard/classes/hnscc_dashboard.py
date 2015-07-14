@@ -1,5 +1,4 @@
 from edc.dashboard.subject.classes import RegisteredSubjectDashboard
-from edc.subject.registration.models import RegisteredSubject
 
 from apps.hnscc_subject.models import Enrollment, HnsccVisit
 from apps.hnscc_lab.models import HnsccRequisition
@@ -23,14 +22,14 @@ class HnsccDashboard(RegisteredSubjectDashboard):
 
     def __init__(self, *args, **kwargs):
         super(HnsccDashboard, self).__init__(*args, **kwargs)
-        self.visit_model = HnsccVisit
         self.subject_dashboard_url = 'hnscc_dashboard_url'
         self.membership_form_category = ['subject_enrollment']
         self.dashboard_type_list = ['subject']
+        self.visit_model = HnsccVisit
+        self._visit_model = HnsccVisit
+        self._locator_model = None
         self.requisition_model = HnsccRequisition
         self.dashboard_models['enrollment'] = Enrollment
-        self.dashboard_models['visit'] = self._visit_model
-        self._locator_model = None
 
     def get_context_data(self, **kwargs):
         super(HnsccDashboard, self).get_context_data(**kwargs)
@@ -78,20 +77,12 @@ class HnsccDashboard(RegisteredSubjectDashboard):
                 self._hnscc_smoking_status = 'smoker'
             elif st[0].smoking_status == 'non-smoker':
                 self._hnscc_smoking_status = 'non-smoker'
-            elif not self._hnscc_smoking_status:
-                self._hnscc_smoking_status = 'UNK'
+            elif st[0].smoking_status == 'UNK':
+                self._hnscc_smoking_status = 'Unknown'
             return self._hnscc_smoking_status
-
-    def get_subject_visit(self):
-        try:
-            hnscc_visit = self.get_visit_model().objects.filter(registered_subject=self.registered_subject)
-        except self.get_visit_model().DoesNotExist:
-            hnscc_visit = None
-        return hnscc_visit
 
     @property
     def registered_subject(self):
-        print 'Dashboard id', self.dashboard_id
         enroll = None
         try:
             enroll = Enrollment.objects.get(id=self.dashboard_id)
