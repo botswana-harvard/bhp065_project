@@ -30,8 +30,9 @@ class Historical (BaseScheduledVisitModel):
         verbose_name="Hospital",
         max_length=35,
         choices=HOSPITAL)
-    specimen_size = models.DateField(
+    specimen_size = models.CharField(
         verbose_name="Specimen size",
+        max_length=25,
         help_text="", )
     nature_of_specimen = models.CharField(
         verbose_name="Nature of specimen",
