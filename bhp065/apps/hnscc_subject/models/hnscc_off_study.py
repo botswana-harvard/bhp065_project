@@ -2,27 +2,17 @@ from django.db import models
 from django.core.urlresolvers import reverse
 
 from edc.audit.audit_trail import AuditTrail
-from edc.base.model.models import BaseUuidModel
-from edc.subject.appointment_helper.models import BaseAppointmentMixin
-from edc.subject.registration.models import RegisteredSubject
+# from edc.base.model.models import BaseUuidModel
+# from edc.subject.appointment_helper.models import BaseAppointmentMixin
+# from edc.subject.registration.models import RegisteredSubject
+from edc.subject.off_study.models.base_off_study import BaseOffStudy
 from edc.entry_meta_data.managers import EntryMetaDataManager
 
-from .choices import OFF_STUDY_REASON
+# from .choices import OFF_STUDY_REASON
 from .hnscc_visit import HnsccVisit
 
 
-class HnsccOffStudy(BaseUuidModel, BaseAppointmentMixin):
-
-    registered_subject = models.OneToOneField(RegisteredSubject)
-
-    offstudy_date = models.DateField(
-        verbose_name="Off-study Date",
-        help_text="")
-
-    reason = models.CharField(
-        verbose_name="Please code the primary reason participant taken off-study",
-        choices=OFF_STUDY_REASON,
-        max_length=45)
+class HnsccOffStudy(BaseOffStudy):
 
     history = AuditTrail()
 
