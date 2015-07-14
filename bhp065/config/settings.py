@@ -56,7 +56,7 @@ USE_L10N = True
 LANGUAGE_CODE = 'en'
 
 SITE_ID = 1
-SITE_CODE = '001'
+SITE_CODE = 'site1'
 
 MEDIA_URL = '/media/'
 
@@ -142,7 +142,8 @@ IS_SECURE_DEVICE = True
 SUBJECT_TYPES = ['subject', ]
 MAX_SUBJECTS = {'subject': 300, }
 SUBJECT_APP_LIST = ['hnscc_subject', ]
+DISPATCH_APP_LABELS = []
 
 PROJECT_TITLE = 'TEST: Head & Neck Squamous Cell Carcinoma'
 INSTITUTION = 'Botswana-Harvard AIDS Institute Partnership'
-PROTOCOL_REVISION = 'VX.X XX May 20XX'
+PROTOCOL_REVISION = 'VX.XX XX May 20XX'
