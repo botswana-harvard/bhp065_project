@@ -11,4 +11,4 @@ M2Crypto
 gitdb
 GitPython
 pycups
---allow-external pyodbc --allow-unverified pyodbc
+pyodbc==3.0.6
