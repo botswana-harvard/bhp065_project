@@ -7,7 +7,7 @@ django-databrowse==2014.9.26
 django-extensions==1.5.2
 django-tastypie
 django-storages
-M2Crypto
 wsgiref==0.1.2
+M2Crypto
 gitdb
 GitPython
