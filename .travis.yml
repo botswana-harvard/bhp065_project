@@ -13,6 +13,7 @@ install:
   - pip install flake8 --use-mirrors
   - pip install coveralls --use-mirrors
   - brew update
+  - brew tap homebrew/versions
   - brew install swig304
   - pip install -r requirements.txt --allow-external pyodbc --allow-unverified pyodbc
 
