@@ -9,16 +9,20 @@ env:
   - DJANGO_VERSION=1.6
 
 before_install:
+  - ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   - brew update
   - brew tap homebrew/versions
+  - pip install https://pyodbc.googlecode.com/files/pyodbc-3.0.7.zip
 
 install:
   - pip install -q Django==$DJANGO_VERSION --use-mirrors
   - pip install flake8 --use-mirrors
   - pip install coveralls --use-mirrors
   - travis_wait 30 brew install STUFF
+  - brew install mod_wsgi
+  - brew install unixodbc
   - brew install swig304
-  - pip install -r requirements.txt --allow-external pyodbc --allow-unverified pyodbc
+  - pip install -r requirements.txt
 
 before_script:
   - flake8 bhp065
