@@ -9,9 +9,8 @@ env:
   - DJANGO_VERSION=1.6
 
 before_install:
-  - brew upgrade
+  - brew update
   - brew tap homebrew/versions
-  - pip install https://pyodbc.googlecode.com/files/pyodbc-3.0.7.zip
 
 install:
   - pip install -q Django==$DJANGO_VERSION --use-mirrors
@@ -19,8 +18,8 @@ install:
   - pip install coveralls --use-mirrors
   - travis_wait 30 brew install STUFF
   - brew install mod_wsgi
-  - brew install unixodbc
   - brew install swig304
+  - pip install https://pyodbc.googlecode.com/files/pyodbc-3.0.7.zip
   - pip install -r requirements.txt --use-mirrors
 
 before_script:
