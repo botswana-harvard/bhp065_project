@@ -10,4 +10,3 @@ django-storages
 M2Crypto
 gitdb
 GitPython
-pycups
