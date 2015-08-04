@@ -14,7 +14,6 @@ class EnrolledSubjectFactory(factory.DjangoModelFactory):
     age = 26
     hiv_status = 'INFECTED'
     smoking_status = 'non-smoker'
-    survival_status = 'ALIVE'
     registered_subject = RegisteredSubject.objects.create(
         first_name='Anonymous',
         subject_type='subject',

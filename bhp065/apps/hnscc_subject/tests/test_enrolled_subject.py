@@ -83,12 +83,12 @@ class TestEnrolledSubject(TestCase):
             registered_subject=registered_subject, entry=entry)
         self.assertEqual(meta_data.entry_status, 'NEW')
 
-    def historical_visit_meta_data(self):
-        HnsccVisitFactory(appointment=self.appointment, data_type='historical')
-        registered_subject = RegisteredSubject.objects.get(
-            subject_identifier=self.enrolled_subject.registered_subject.subject_identifier)
-        entry = Entry.objects.get(model_name='historical',
-            visit_definition_id=self.appointment.visit_definition_id)
-        meta_data = ScheduledEntryMetaData.objects.get(appointment=self.appointment,
-            registered_subject=registered_subject, entry=entry)
-        self.assertEqual(meta_data.entry_status, 'NEW')
+#     def historical_visit_meta_data(self):
+#         HnsccVisitFactory(appointment=self.appointment, data_type='historical')
+#         registered_subject = RegisteredSubject.objects.get(
+#             subject_identifier=self.enrolled_subject.registered_subject.subject_identifier)
+#         entry = Entry.objects.get(model_name='historical',
+#             visit_definition_id=self.appointment.visit_definition_id)
+#         meta_data = ScheduledEntryMetaData.objects.get(appointment=self.appointment,
+#             registered_subject=registered_subject, entry=entry)
+#         self.assertEqual(meta_data.entry_status, 'NEW')
