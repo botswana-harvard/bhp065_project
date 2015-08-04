@@ -66,7 +66,7 @@ class HnsccDashboard(RegisteredSubjectDashboard):
                 self._hnscc_hiv_status = 'HIV Infected'
             elif st[0].hiv_status == 'UNINFECTED':
                 self._hnscc_hiv_status = 'HIV uninfected'
-            elif not self._hnscc_hiv_status:
+            elif st[0]._hnscc_hiv_status == 'UNK':
                 self._hnscc_hiv_status = 'UNK'
             return self._hnscc_hiv_status
 

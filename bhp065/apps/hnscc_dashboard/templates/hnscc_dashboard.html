@@ -4,12 +4,12 @@
 
 {% block clinic_dashboard_marquee %}
 <table>
-{%if enrollment.survival_status == 'DEAD' %}
+{%if enrollment.bpcc_enrolled == 'NO' %}
         <tr style="background:lightpink;">
-        <td nowrap><B> {{enrollment.survival_status}}</B> {%endif%}</tr>
-{%if enrollment.survival_status == 'ALIVE' %}
+        <td nowrap><B> Subject is NOT enrolled in BCPP</B> {%endif%}</tr>
+{%if enrollment.bpcc_enrolled == 'YES' %}
         <tr style="background:lightgreen;">
-        <td nowrap><B> {{enrollment.survival_status}}</B> {%endif%}</tr>
+        <td nowrap><B> Subject is enrolled in BCPP: {{enrollment.bid_number}}</B> {%endif%}</tr>
 <tr style="background:lightyellow;">
     <td nowrap><B>Enrolled Subject:</B> {% if enrollment.registered_subject %}{{enrollment.registered_subject.subject_identifier }}{%else%}{{registered_subject.subject_identifier }}{% endif %}</td>
     <td nowrap><B>Registration Time:</B> {{enrollment.report_datetime|date:"Y-m-d H:i" }}</td>
