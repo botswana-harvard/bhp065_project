@@ -1,6 +1,7 @@
 HIV_STATUS = (
     ('INFECTED', 'HIV infected'),
-    ('UNINFECTED', 'HIV uninfected'),)
+    ('UNINFECTED', 'HIV uninfected'),
+    ('UNK', 'Unknown'), )
 
 SMOKING_STATUS = (
     ('smoker', 'smoker'),
@@ -26,10 +27,11 @@ HOSPITAL = (
     ('ENT', 'ENT'),
     ('KANYE', 'Kanye'), )
 
-SURVIVAL_STATUS = (
-    ('ALIVE', 'Alive'),
-    ('DEAD', 'Dead'), )
-
 DATA_COLLECTION_TYPE = (
     ('contemporary', 'Contemporary'),
     ('historical', 'Historical'), )
+
+REASON_NOT_DRAWN = (
+    ('not enough tissue', 'There was not enough tissue'),
+    ('technical failure', 'Technical failure'),
+    ('no_supplies', 'No supplies'), )
