@@ -18,10 +18,7 @@ class ContemporaryAdmin(HnsccVisitModelAdmin):
         "topography_code",
         "morphology_code",
         "diagnosis",
-        "bpcc_enrolled",
-        "bid_number",
         "any_duplications")
     radio_fields = {
-        "bpcc_enrolled": admin.VERTICAL,
         "any_duplications": admin.VERTICAL, }
 admin.site.register(Contemporary, ContemporaryAdmin)
