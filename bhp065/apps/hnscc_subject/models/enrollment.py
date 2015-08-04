@@ -1,15 +1,17 @@
 from django.db import models
 from django.conf import settings
+
 from edc.audit.audit_trail import AuditTrail
+from edc.base.model.models import BaseUuidModel
 from edc.base.model.validators import (datetime_not_before_study_start, datetime_not_future)
 from edc.choices.common import GENDER
+from edc.choices.common import YES_NO
 from edc.core.identifier.classes import SubjectIdentifier
-from edc.base.model.models import BaseUuidModel
 from edc.subject.appointment_helper.models import BaseAppointmentMixin
 from edc.subject.registration.models import RegisteredSubject
 
+from .choices import HIV_STATUS, SMOKING_STATUS
 from .hnscc_off_study_mixin import HnsccOffStudyMixin
-from .choices import HIV_STATUS, SMOKING_STATUS, SURVIVAL_STATUS
 
 
 class Enrollment (HnsccOffStudyMixin, BaseAppointmentMixin, BaseUuidModel):
@@ -47,21 +49,23 @@ class Enrollment (HnsccOffStudyMixin, BaseAppointmentMixin, BaseUuidModel):
         max_length=15,
         choices=SMOKING_STATUS,)
 
-    survival_status = models.CharField(
-        verbose_name='Survival status',
-        max_length=5,
-        choices=SURVIVAL_STATUS,)
+    bpcc_enrolled = models.CharField(
+        verbose_name='BPCC enrolled',
+        max_length=3,
+        choices=YES_NO,
+        help_text="Botswana Prospective Cancer Cohort", )
+
+    bid_number = models.CharField(
+        verbose_name="BPCC BID number",
+        max_length=15,
+        null=True,
+        blank=True,
+        help_text="this is only for those who are registered on the BPCC/BHP045 cohort", )
 
     history = AuditTrail()
 
     def __unicode__(self):
         return "{}, {}({})".format(self.registered_subject, self.gender, self.age)
-
-    def enrollment_age(self):
-        subject_age = []
-        if self.age < 18:
-            subject_age.append('Under age (<18).')
-        return (False if subject_age else True, subject_age)
 
     def get_registration_datetime(self):
         return self.report_datetime

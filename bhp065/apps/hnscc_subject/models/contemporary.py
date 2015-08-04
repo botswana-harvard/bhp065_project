@@ -52,17 +52,6 @@ class Contemporary (BaseScheduledVisitModel):
         verbose_name="Diagnosis",
         max_length=150,
         help_text="", )
-    bpcc_enrolled = models.CharField(
-        verbose_name='BPCC enrolled',
-        max_length=3,
-        choices=YES_NO,
-        help_text="Botswana Prospective Cancer Cohort", )
-    bid_number = models.CharField(
-        verbose_name="BID number",
-        max_length=15,
-        null=True,
-        blank=True,
-        help_text="", )
     any_duplications = models.CharField(
         verbose_name="Any sample duplications?",
         max_length=3,
