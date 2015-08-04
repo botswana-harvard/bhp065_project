@@ -37,6 +37,6 @@ class HnsccVisitSchedule(VisitScheduleConfiguration):
                                   'TEST', 'WB', REQUIRED, NOT_ADDITIONAL), ),
         'entries': (
             EntryTuple(10L, u'hnscc_subject', u'contemporary', REQUIRED, NOT_ADDITIONAL),
-            EntryTuple(20L, u'hnscc_subject', u'historical', REQUIRED, NOT_ADDITIONAL),
+            # EntryTuple(20L, u'hnscc_subject', u'historical', REQUIRED, NOT_ADDITIONAL),
             EntryTuple(1010L, u'hnscc_subject', u'hnsccoffstudy', NOT_REQUIRED, ADDITIONAL),)}
 site_visit_schedules.register(HnsccVisitSchedule)
