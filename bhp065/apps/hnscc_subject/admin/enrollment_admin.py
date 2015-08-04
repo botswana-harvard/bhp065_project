@@ -19,9 +19,10 @@ class EnrollmentAdmin(BaseModelAdmin):
             'age',
             'hiv_status',
             'smoking_status',
-            'survival_status', ]
+            "bpcc_enrolled",
+            "bid_number", ]
         self.radio_fields = {'gender': admin.VERTICAL,
                              'hiv_status': admin.VERTICAL,
                              'smoking_status': admin.VERTICAL,
-                             'survival_status': admin.VERTICAL, }
+                             "bpcc_enrolled": admin.VERTICAL, }
 admin.site.register(Enrollment, EnrollmentAdmin)
