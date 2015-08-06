@@ -2,7 +2,7 @@ from edc.dashboard.subject.classes import RegisteredSubjectDashboard
 
 from apps.hnscc_subject.models import Enrollment, HnsccVisit
 from apps.hnscc_lab.models import HnsccRequisition
-
+from edc.constants import YES, NO
 
 class HnsccDashboard(RegisteredSubjectDashboard):
 
@@ -40,7 +40,8 @@ class HnsccDashboard(RegisteredSubjectDashboard):
             title='Hnscc Dashboard',
             hiv_status=self.hnscc_hiv_status(),
             smoking_status=self.hnscc_smoking_status(),
-            enrollment=self.enrollment(), )
+            enrollment=self.enrollment(),
+            bpcc_enrollment=self.is_bpcc_enrolled(), )
         return self.context
 
     def set_dashboard_type_list(self):
@@ -80,6 +81,15 @@ class HnsccDashboard(RegisteredSubjectDashboard):
             elif st[0].smoking_status == 'UNK':
                 self._hnscc_smoking_status = 'Unknown'
             return self._hnscc_smoking_status
+
+    def is_bpcc_enrolled(self):
+        st = Enrollment.objects.filter(registered_subject=self.registered_subject)
+        if st:
+            if st[0].bpcc_enrolled == YES:
+                self._get_bpcc_bid = 'ENROLLED'
+            elif st[0].bpcc_enrolled == NO:
+                self._get_bpcc_bid = 'NOT ENROLLED'
+            return self._get_bpcc_bid
 
     @property
     def registered_subject(self):
