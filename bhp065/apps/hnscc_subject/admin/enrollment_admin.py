@@ -22,8 +22,11 @@ class EnrollmentAdmin(BaseModelAdmin):
             'smoking_status',
             "bpcc_enrolled",
             "bid_number", ]
+        self.list_display = ("registered_subject", "pathology_no", "gender", "age",
+                             "bpcc_enrolled", "bid_number")
         self.radio_fields = {'gender': admin.VERTICAL,
                              'hiv_status': admin.VERTICAL,
                              'smoking_status': admin.VERTICAL,
                              "bpcc_enrolled": admin.VERTICAL, }
+        self.list_filter = ('gender', "bpcc_enrolled", "report_datetime")
 admin.site.register(Enrollment, EnrollmentAdmin)
