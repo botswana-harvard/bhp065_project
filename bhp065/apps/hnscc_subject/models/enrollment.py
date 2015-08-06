@@ -1,3 +1,4 @@
+from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import connections
@@ -83,6 +84,7 @@ class Enrollment (HnsccOffStudyMixin, BaseAppointmentMixin, BaseUuidModel):
     def save(self, *args, **kwargs):
         using = kwargs.get('using')
         self.register_enrolled_subjects(using)
+        self.confirm_pathology(self)
         super(Enrollment, self).save(*args, **kwargs)
 
     def register_enrolled_subjects(self, using, **kwargs):
@@ -113,7 +115,15 @@ class Enrollment (HnsccOffStudyMixin, BaseAppointmentMixin, BaseUuidModel):
         if not self.bid_number:
             pass
         else:
-            raise exception_cls("No matching BID found: You wrote {}".format(self.bid_number))
+            raise forms.ValidationError("No matching BID found: You wrote {}".format(self.bid_number))
+
+    def confirm_pathology(self, enrollment, exception_cls=None):
+        if not exception_cls:
+            exception_cls = ValidationError
+        has_pathology = Enrollment.objects.filter(pathology_no=enrollment.pathology_no).exists()
+        if has_pathology:
+            raise exception_cls("This pathology number, {}, is already used for another BID."
+                                " Please check. ".format(enrollment.pathology_no))
 
     class Meta:
         app_label = "hnscc_subject"
