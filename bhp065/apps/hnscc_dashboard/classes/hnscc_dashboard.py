@@ -4,6 +4,7 @@ from apps.hnscc_subject.models import Enrollment, HnsccVisit
 from apps.hnscc_lab.models import HnsccRequisition
 from edc.constants import YES, NO
 
+
 class HnsccDashboard(RegisteredSubjectDashboard):
 
     view = 'hnscc_dashboard'
@@ -67,8 +68,8 @@ class HnsccDashboard(RegisteredSubjectDashboard):
                 self._hnscc_hiv_status = 'HIV Infected'
             elif st[0].hiv_status == 'UNINFECTED':
                 self._hnscc_hiv_status = 'HIV uninfected'
-            elif st[0]._hnscc_hiv_status == 'UNK':
-                self._hnscc_hiv_status = 'UNK'
+            elif st[0].hiv_status == 'UNK':
+                self._hnscc_hiv_status = 'Unknown'
             return self._hnscc_hiv_status
 
     def hnscc_smoking_status(self):
