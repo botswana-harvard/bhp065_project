@@ -1,5 +1,7 @@
-from django.db import models
 from django.conf import settings
+from django.core.exceptions import ValidationError
+from django.db import connections
+from django.db import models
 
 from edc.audit.audit_trail import AuditTrail
 from edc.base.model.models import BaseUuidModel
@@ -9,6 +11,7 @@ from edc.choices.common import YES_NO
 from edc.core.identifier.classes import SubjectIdentifier
 from edc.subject.appointment_helper.models import BaseAppointmentMixin
 from edc.subject.registration.models import RegisteredSubject
+from edc.core.crypto_fields.fields import EncryptedCharField
 
 from .choices import HIV_STATUS, SMOKING_STATUS
 from .hnscc_off_study_mixin import HnsccOffStudyMixin
@@ -62,6 +65,13 @@ class Enrollment (HnsccOffStudyMixin, BaseAppointmentMixin, BaseUuidModel):
         blank=True,
         help_text="this is only for those who are registered on the BPCC/BHP045 cohort", )
 
+    pathology_no = EncryptedCharField(
+        verbose_name="Pathology Number",
+        max_length=15,
+        null=True,
+        blank=True,
+        help_text="Required ONLY if lab results processed using this number", )
+
     history = AuditTrail()
 
     def __unicode__(self):
@@ -87,6 +97,23 @@ class Enrollment (HnsccOffStudyMixin, BaseAppointmentMixin, BaseUuidModel):
             user_created=self.user_created,
             registration_status='enrolled',)
         self.registered_subject = registered_subject
+
+    def query_bpcc_cohort(self, exception_cls=None):
+        if not exception_cls:
+            exception_cls = ValidationError
+        cursor = connections['cancer'].cursor()
+        cursor.execute("SELECT subject_identifier FROM bhp_registration_registeredsubject")
+        bpcc_row = cursor.fetchall()
+        i = list(bpcc_row)
+        identifiers = []
+        for x in i:
+            identifiers.append(x[0])
+        if self.bid_number in identifiers:
+            return self.bid_number
+        if not self.bid_number:
+            pass
+        else:
+            raise exception_cls("No matching BID found: You wrote {}".format(self.bid_number))
 
     class Meta:
         app_label = "hnscc_subject"

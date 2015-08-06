@@ -15,6 +15,7 @@ class EnrollmentAdmin(BaseModelAdmin):
         super(EnrollmentAdmin, self).__init__(*args, **kwargs)
         self.fields = [
             'report_datetime',
+            'pathology_no',
             'gender',
             'age',
             'hiv_status',
