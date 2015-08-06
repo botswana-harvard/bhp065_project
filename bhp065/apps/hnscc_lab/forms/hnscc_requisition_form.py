@@ -12,6 +12,7 @@ class HnsccRequisitionForm(BaseRequisitionForm):
     reason_not_drawn = forms.ChoiceField(
         label='If not drawn, please explain',
         choices=[choice for choice in REASON_NOT_DRAWN],
+        required=False,
         widget=AdminRadioSelect(renderer=AdminRadioFieldRenderer), )
 
     def __init__(self, *args, **kwargs):
