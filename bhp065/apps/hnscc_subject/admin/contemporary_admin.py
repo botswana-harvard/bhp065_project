@@ -9,7 +9,6 @@ class ContemporaryAdmin(HnsccVisitModelAdmin):
     form = ContemporaryForm
     fields = (
         "hnscc_visit",
-        "pathology_no",
         "diagnosis_date",
         "specimen_collecton",
         "specimen_size",

@@ -11,10 +11,6 @@ from .base_scheduled_visit_model import BaseScheduledVisitModel
 
 class Contemporary (BaseScheduledVisitModel):
 
-    pathology_no = models.CharField(
-        verbose_name="Pathology",
-        max_length=15,
-        help_text="", )
     diagnosis_date = models.DateField(
         verbose_name="Date of Diagnosis",
         help_text="", )
