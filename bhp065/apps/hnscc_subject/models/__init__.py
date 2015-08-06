@@ -5,3 +5,4 @@ from .enrollment import Enrollment
 from .base_scheduled_visit_model import BaseScheduledVisitModel
 from .contemporary import Contemporary
 # from .historical import Historical
+from .signals import *
