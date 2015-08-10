@@ -6,3 +6,5 @@
 bhp065: HPV and HIV-Associated Head and Neck Squamous Cell Carcinoma in Botswana 
 
 ---
+
+Creates anonymous enrollments and generates unique identifiers for subjects. 
