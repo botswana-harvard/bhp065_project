@@ -3,15 +3,23 @@
 TESTING_SQLITE = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db_name.sqlite',
+        'NAME': '/home/django/source/bhp065_project/bhp065.sqlite',
         'USER': 'root',
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
         'ATOMIC_REQUESTS': True},
+    'cancer': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': '',
+        'PORT': '',
+        'ATOMIC_REQUESTS': True},
     'lab_api': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'lab',
+        'NAME': '/home/django/source/bhp065_project/lab',
         'USER': 'root',
         'PASSWORD': 'password',
         'HOST': '',
@@ -19,7 +27,7 @@ TESTING_SQLITE = {
         'ATOMIC_REQUESTS': True},
     'destination': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'macair',
+        'NAME': '/home/django/source/bhp065_project/macair',
         'USER': 'root',
         'PASSWORD': 'password',
         'HOST': '',
@@ -27,7 +35,7 @@ TESTING_SQLITE = {
         'ATOMIC_REQUESTS': True},
     'dispatch_destination': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'producer',
+        'NAME': '/home/django/source/bhp065_project/producer',
         'USER': 'root',
         'PASSWORD': 'password',
         'HOST': '',

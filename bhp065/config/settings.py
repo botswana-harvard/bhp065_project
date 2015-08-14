@@ -4,15 +4,15 @@ import socket
 
 from unipath import Path
 
-from bhp065.config.installed_apps import DJANGO_APPS, THIRD_PARTY_APPS, EDC_APPS, LIS_APPS, LOCAL_APPS
-from bhp065.config.databases import TESTING_SQLITE
+from config.installed_apps import DJANGO_APPS, THIRD_PARTY_APPS, EDC_APPS, LIS_APPS, LOCAL_APPS
+from config.databases import TESTING_SQLITE
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 APP_NAME = 'hnscc'
-PROJECT_NUMBER = 'BHP000'
-PROJECT_IDENTIFIER_PREFIX = '000'
+PROJECT_NUMBER = 'BHP065'
+PROJECT_IDENTIFIER_PREFIX = '065'
 
 # PATHS
 DIRNAME = os.path.dirname(os.path.abspath(__file__))
@@ -22,9 +22,7 @@ TEMPLATE_DIRS = (
     EDC_DIR.child('templates'),
 )
 PROJECT_ROOT = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(2)
-# print PROJECT_ROOT
 PROJECT_DIR = Path(os.path.dirname(os.path.realpath(__file__))).ancestor(1)
-print PROJECT_DIR
 APP_DIR = PROJECT_DIR.child('apps').child(APP_NAME)
 ETC_DIR = PROJECT_DIR.child('config').child('etc')
 MEDIA_ROOT = PROJECT_DIR.child('media')
@@ -36,8 +34,7 @@ STATICFILES_DIRS = ()
 CONFIG_DIR = PROJECT_DIR.child('config')
 MAP_DIR = STATIC_ROOT.child('img')
 
-KEY_PATH = '/Volumes/keys'
-
+KEY_PATH = PROJECT_DIR.child('keys')
 
 # DATABASES
 DATABASES = TESTING_SQLITE
@@ -56,7 +53,7 @@ USE_L10N = True
 LANGUAGE_CODE = 'en'
 
 SITE_ID = 1
-SITE_CODE = 'site1'
+SITE_CODE = '040'
 
 MEDIA_URL = '/media/'
 
@@ -107,7 +104,6 @@ ROOT_URLCONF = 'config.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'config.wsgi.application'
-
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + EDC_APPS + LIS_APPS + LOCAL_APPS
 
 # django
@@ -146,4 +142,4 @@ DISPATCH_APP_LABELS = []
 
 PROJECT_TITLE = 'TEST: Head & Neck Squamous Cell Carcinoma'
 INSTITUTION = 'Botswana-Harvard AIDS Institute Partnership'
-PROTOCOL_REVISION = 'VX.XX XX May 20XX'
+PROTOCOL_REVISION = 'V1.0 XX May 20XX'
