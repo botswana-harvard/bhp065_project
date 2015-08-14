@@ -1,0 +1,31 @@
+language: python
+python:
+  - "2.7"
+#  - "3.2"
+#  - "3.3"
+#  - "3.4"
+#  - "nightly"
+env:
+  - DJANGO_VERSION=1.6
+
+before_install:
+  - brew update
+  - brew tap homebrew/versions
+
+install:
+  - pip install -q Django==$DJANGO_VERSION --use-mirrors
+  - pip install flake8 --use-mirrors
+  - pip install coveralls --use-mirrors
+  - travis_wait 30 brew install STUFF
+  - brew install mod_wsgi
+  - brew install swig304
+  - pip install https://pyodbc.googlecode.com/files/pyodbc-3.0.7.zip
+  - pip install -r requirements.txt --use-mirrors
+
+before_script:
+  - flake8 bhp065
+script: 
+  - coverage run --source=bhp065 manage.py test
+
+after_success:
+  - coveralls
